@@ -57,7 +57,7 @@ A aplicação segue uma arquitetura distribuída, composta por três principais 
 
 ```bash
 git clone https://github.com/saulodiasnt/backend-mvp-sprint2 backend && \
-git clone https://github.com/saulodiasnt/frontend-mvp-sprint1 frontend
+git clone https://github.com/saulodiasnt/frontend-mvp-sprint2 frontend
 ```
 
 2. Navegue até a pasta do backend:
@@ -108,6 +108,103 @@ docker-compose up -d
 A aplicação principal ficará disponível no endereço: http://localhost:8080.
 
 A aplicação REST secundária ficará disponível no endereço: http://localhost:5000.
+
+### Executar aplicação sem Docker
+
+#### Pré-requisitos
+
+- Node.js (versão 18 ou superior)
+- Python
+- MariaDB
+
+#### Frontend
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/saulodiasnt/frontend-mvp-sprint2 frontend
+```
+
+2. Navegue até a pasta do frontend:
+
+```bash
+cd frontend
+```
+
+3. Instale as dependências:
+
+```bash
+npm install
+```
+
+4. Crie um arquivo `.env` contendo as variáveis de ambiente da aplicação:
+
+```plaintext
+VITE_API_URL=http://localhost:5000 # URL do backend da aplicação
+VITE_TMDB_API_KEY= # Chave da API do TMDB
+```
+
+5. Execute o projeto:
+
+```
+npm run dev
+```
+
+A aplicação principal ficará disponível no endereço: http://localhost:8080.
+
+#### Backend
+
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/saulodiasnt/backend-mvp-sprint2 backend
+```
+
+2. Navegue até a pasta do backend:
+
+```bash
+cd backend
+```
+
+3. Crie um ambiente virtual e ative-o:
+
+```
+python -m venv venv
+source venv/bin/activate # No Windows use `venv\Scripts\activate`
+```
+
+4. Instale as depedências:
+
+```bash
+pip install -r requirements.txt
+```
+
+5. Execute as migrações
+
+```bash
+flask db upgrade
+```
+
+6. Execute o servidor:
+
+```bash
+flask run
+```
+
+A aplicação REST secundária ficará disponível no endereço: http://localhost:5000.
+
+## Obtendo uma API Key do TMDB
+
+Para utilizar a API do TMDB, você precisa de uma API key. Siga os passos abaixo para obter a sua:
+
+1. Acesse o site [TMDB](https://www.themoviedb.org/).
+2. Crie uma conta ou faça login, se já possuir uma conta.
+3. Após fazer login, clique no seu avatar no canto superior direito e selecione Settings (Configurações).
+4. No menu lateral esquerdo, clique em API.
+5. Na página de API, clique no botão Create para gerar uma nova API key.
+6. Preencha as informações necessárias e envie a solicitação.
+7. Após a aprovação, sua API key estará disponível na seção API Key.
+8. Adicione a sua API key ao arquivo .env do frontend e backend conforme necessário.
 
 ## Contribuição
 
