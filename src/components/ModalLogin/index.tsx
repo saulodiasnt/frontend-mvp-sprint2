@@ -5,6 +5,7 @@ import { FC, useContext } from "react";
 
 import * as S from "./styles";
 import { AuthContext } from "../../utils/contexts/Auth";
+import { useNavigate } from "react-router-dom";
 
 export type ModalLoginProps = {
   open: boolean;
@@ -15,6 +16,7 @@ export const ModalLogin: FC<ModalLoginProps> = (props) => {
   const { login } = useContext(AuthContext);
   const { onClose, open } = props;
   const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
 
   const onSubmit = (data: any) => {
     login(data.email, data.password);
@@ -22,6 +24,12 @@ export const ModalLogin: FC<ModalLoginProps> = (props) => {
 
   const handleClose = () => {
     onClose();
+  };
+
+  const handleRegister = () => {
+    onClose();
+
+    navigate("/register");
   };
 
   return (
@@ -58,7 +66,7 @@ export const ModalLogin: FC<ModalLoginProps> = (props) => {
         <div>
           <Typography variant="body2" color="white" align="center">
             Não tem uma conta?{" "}
-            <Button onClick={handleClose}>Cadastre-se</Button>
+            <Button onClick={handleRegister}>Cadastre-se</Button>
           </Typography>
         </div>
       </S.Wrapper>
