@@ -6,9 +6,12 @@ services:
     ports:
       - "5000:5000"
   frontend:
-    build: .
-    environment:
-      - VITE_API_URL=http://backend:5000/
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=http://localhost:5000/
+        - VITE_TMDB_API_KEY=3cfe3e3f950b0f0f313123c757f4e033
     ports:
       - "8080:80"
     depends_on:
